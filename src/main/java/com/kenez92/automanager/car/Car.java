@@ -37,47 +37,47 @@ class Car {
         return id;
     }
 
-    public void setId(Long id) {
+    void setId(Long id) {
         this.id = id;
     }
 
-    public String getBrand() {
+    String getBrand() {
         return brand;
     }
 
-    public void setBrand(String brand) {
+    void setBrand(String brand) {
         this.brand = brand;
     }
 
-    public String getModel() {
+    String getModel() {
         return model;
     }
 
-    public void setModel(String model) {
+    void setModel(String model) {
         this.model = model;
     }
 
-    public Integer getProductionYear() {
+    Integer getProductionYear() {
         return productionYear;
     }
 
-    public void setProductionYear(Integer productionYear) {
+    void setProductionYear(Integer productionYear) {
         this.productionYear = productionYear;
     }
 
-    public String getEngine() {
+    String getEngine() {
         return engine;
     }
 
-    public void setEngine(String engine) {
+    void setEngine(String engine) {
         this.engine = engine;
     }
 
-    public String getFuel() {
+    String getFuel() {
         return fuel;
     }
 
-    public void setFuel(String fuel) {
+    void setFuel(String fuel) {
         this.fuel = fuel;
     }
 }
