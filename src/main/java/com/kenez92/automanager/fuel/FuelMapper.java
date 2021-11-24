@@ -1,11 +1,11 @@
-package com.kenez92.automanager.car;
+package com.kenez92.automanager.fuel;
 
 import org.mapstruct.Mapper;
 import org.springframework.stereotype.Component;
 
 @Component
 @Mapper(componentModel = "spring")
-interface CarMapper {
+interface FuelMapper {
 
-    CarDto mapToCarDto(Car car);
+    FuelDto mapToFuelDto(Fuel fuel);
 }

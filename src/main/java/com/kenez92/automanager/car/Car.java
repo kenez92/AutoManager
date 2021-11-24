@@ -1,15 +1,22 @@
 package com.kenez92.automanager.car;
 
+import com.kenez92.automanager.fuel.Fuel;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import java.util.List;
 
 @Entity
 @Table(name = "CAR")
-class Car {
+public class Car {
     @Column(name = "ID")
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -29,6 +36,12 @@ class Car {
 
     @Column(name = "FUEL")
     private String fuel;
+
+    @OneToMany(
+            cascade = CascadeType.ALL,
+            fetch = FetchType.LAZY,
+            mappedBy = "car")
+    private List<Fuel> fuelList;
 
     public Car() {
     }
@@ -79,5 +92,13 @@ class Car {
 
     void setFuel(String fuel) {
         this.fuel = fuel;
+    }
+
+    List<Fuel> getFuelList() {
+        return fuelList;
+    }
+
+    void setFuelList(List<Fuel> fuelList) {
+        this.fuelList = fuelList;
     }
 }
