@@ -19,13 +19,13 @@ public class Fuel {
     @Column(name = "ID")
     private Long id;
 
-    @Column(name = "Liters", nullable = false)
+    @Column(name = "Liters", nullable = false, columnDefinition = "DECIMAL(6,2)")
     private Float liters;
 
-    @Column(name = "COMPUTER AVERAGE_FUEL_CONSUMPTION", columnDefinition = "DECIMAL(3,2)")
+    @Column(name = "COMPUTER_AVERAGE_FUEL_CONSUMPTION", columnDefinition = "DECIMAL(5,2)")
     private Float computerAvgFuelConsumption;
 
-    @Column(name = "REAL_AVERAGE_FUEL_CONSUMPTION", columnDefinition = "DECIMAL(3,2)")
+    @Column(name = "REAL_AVERAGE_FUEL_CONSUMPTION", columnDefinition = "DECIMAL(5,2)")
     private Float realAvgFuelConsumption;
 
     @Column(name = "DATE")
