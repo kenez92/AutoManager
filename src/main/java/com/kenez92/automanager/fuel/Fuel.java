@@ -45,7 +45,7 @@ public class Fuel {
         this.id = id;
     }
 
-    Float getLiters() {
+    public Float getLiters() {
         return liters;
     }
 
@@ -53,7 +53,7 @@ public class Fuel {
         this.liters = liters;
     }
 
-    Float getComputerAvgFuelConsumption() {
+    public Float getComputerAvgFuelConsumption() {
         return computerAvgFuelConsumption;
     }
 
@@ -61,7 +61,7 @@ public class Fuel {
         this.computerAvgFuelConsumption = computerAvgFuelConsumption;
     }
 
-    Float getRealAvgFuelConsumption() {
+    public Float getRealAvgFuelConsumption() {
         return realAvgFuelConsumption;
     }
 
@@ -69,7 +69,7 @@ public class Fuel {
         this.realAvgFuelConsumption = realAvgFuelConsumption;
     }
 
-    Date getDate() {
+    public Date getDate() {
         return date;
     }
 
@@ -77,7 +77,7 @@ public class Fuel {
         this.date = date;
     }
 
-    Double getCost() {
+    public Double getCost() {
         return cost;
     }
 
@@ -85,7 +85,7 @@ public class Fuel {
         this.cost = cost;
     }
 
-    Car getCar() {
+    public Car getCar() {
         return car;
     }
 

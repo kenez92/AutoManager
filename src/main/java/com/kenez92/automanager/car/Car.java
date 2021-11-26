@@ -9,7 +9,6 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import java.util.List;
@@ -31,7 +30,7 @@ public class Car {
     @Column(name = "PRODUCTION_YEAR")
     private Integer productionYear;
 
-    @Column(name = "Engine")
+    @Column(name = "ENGINE")
     private String engine;
 
     @Column(name = "FUEL")
@@ -54,7 +53,7 @@ public class Car {
         this.id = id;
     }
 
-    String getBrand() {
+    public String getBrand() {
         return brand;
     }
 
@@ -62,7 +61,7 @@ public class Car {
         this.brand = brand;
     }
 
-    String getModel() {
+    public String getModel() {
         return model;
     }
 
@@ -70,7 +69,7 @@ public class Car {
         this.model = model;
     }
 
-    Integer getProductionYear() {
+    public Integer getProductionYear() {
         return productionYear;
     }
 
@@ -78,7 +77,7 @@ public class Car {
         this.productionYear = productionYear;
     }
 
-    String getEngine() {
+    public String getEngine() {
         return engine;
     }
 
@@ -86,7 +85,7 @@ public class Car {
         this.engine = engine;
     }
 
-    String getFuel() {
+    public String getFuel() {
         return fuel;
     }
 
@@ -94,7 +93,7 @@ public class Car {
         this.fuel = fuel;
     }
 
-    List<Fuel> getFuelList() {
+    public List<Fuel> getFuelList() {
         return fuelList;
     }
 
