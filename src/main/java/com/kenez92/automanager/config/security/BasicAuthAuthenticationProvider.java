@@ -7,23 +7,27 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 
 @Component
 class BasicAuthAuthenticationProvider implements AuthenticationProvider {
     private final UserService userService;
+    private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
-    public BasicAuthAuthenticationProvider(UserService userService) {
+    public BasicAuthAuthenticationProvider(UserService userService, BCryptPasswordEncoder bCryptPasswordEncoder) {
         this.userService = userService;
+        this.bCryptPasswordEncoder = bCryptPasswordEncoder;
     }
 
     @Override
     public Authentication authenticate(Authentication authentication) throws AuthenticationException {
-        String password = (String) authentication.getCredentials();
-        String username = (String) authentication.getPrincipal();
-        UserDetails userDetails = userService.loadUserByUsername(username);
-        if (password.equals(userDetails.getPassword())) {
-            return new UsernamePasswordAuthenticationToken(userDetails.getUsername(), userDetails.getPassword(), userDetails.getAuthorities());
+        if (authentication != null && authentication.getCredentials() != null && authentication.getPrincipal() != null) {
+            UserDetails userDetails = userService.loadUserByUsername(authentication.getPrincipal().toString());
+            if (bCryptPasswordEncoder.matches(authentication.getCredentials().toString(), userDetails.getPassword())) {
+                return new UsernamePasswordAuthenticationToken(userDetails.getUsername(), userDetails.getPassword(),
+                        userDetails.getAuthorities());
+            }
         }
         throw new BadCredentialsException("Bad credentials");
     }
