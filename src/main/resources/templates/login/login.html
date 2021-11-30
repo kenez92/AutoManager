@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link rel="stylesheet" th:href="@{/login/login.css}"/>
+</head>
+<body class="bg">
+<div class="errors" th:if="${(param.error != null)}">
+    The username or password is incorrect!
+</div>
+<form action="/basicAuth/login" method="post">
+    <p>Username</p>
+    <input class="textArea" name="username" type="text" placeholder="Enter username">
+    <p> Password</p>
+    <input class="textArea" name="password" type="password" placeholder="Password">
+    <input class="button" type="submit" value="Login">
+
+</form>
+</body>
+</html>

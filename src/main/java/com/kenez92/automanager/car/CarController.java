@@ -22,12 +22,12 @@ class CarController {
     @GetMapping("/{id}")
     public String getCarById(Model model, Principal principal, @PathVariable Long id) {
         model.addAttribute("Car", carService.getById(id, principal));
-        return "car/Car";
+        return "car/car";
     }
 
     @GetMapping("/createCar")
     public String createCar() {
-        return "car/CreateCar";
+        return "car/createCar";
     }
 
     @RequestMapping(value = "/", method = RequestMethod.POST)
