@@ -1,13 +1,21 @@
 package com.kenez92.automanager.car;
 
-class CarDto {
-    private String brand;
+public class CarDto {
+    public String brand;
     private String model;
     private Integer productionYear;
     private String engine;
     private String fuel;
 
     public CarDto() {
+    }
+
+    public CarDto(String brand, String model, Integer productionYear, String engine, String fuel) {
+        this.brand = brand;
+        this.model = model;
+        this.productionYear = productionYear;
+        this.engine = engine;
+        this.fuel = fuel;
     }
 
     public String getBrand() {

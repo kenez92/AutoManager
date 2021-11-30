@@ -1,12 +1,10 @@
 package com.kenez92.automanager.config.security;
 
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 @Configuration
 class SecurityConfig extends WebSecurityConfigurerAdapter {
@@ -26,13 +24,11 @@ class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
                 .antMatchers(HttpMethod.GET, "/car/*").authenticated()
+                .antMatchers(HttpMethod.GET, "/users/createUser").permitAll()
+                .antMatchers(HttpMethod.GET, "/login").permitAll()
                 .and()
-                .formLogin().permitAll()
-                .and()
-                .csrf().disable()
-                .headers().frameOptions().disable()
-                .and().headers().disable();
+                .formLogin().loginPage("/login")
+                .loginProcessingUrl("/basicAuth/login")
+                .and().csrf().disable();
     }
-
-
 }

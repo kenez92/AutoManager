@@ -8,4 +8,6 @@ import org.springframework.stereotype.Component;
 interface CarMapper {
 
     CarDto mapToCarDto(Car car);
+
+    Car mapToCar(CarDto carDto);
 }

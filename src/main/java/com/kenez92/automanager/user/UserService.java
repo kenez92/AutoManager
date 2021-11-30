@@ -29,15 +29,6 @@ public class UserService implements UserDetailsService {
         throw new UsernameNotFoundException("User not found");
     }
 
-    UserDto getUserByUserName(String userName) {
-        Optional<User> user = userRepository.findUserByUserName(userName);
-        if (user.isPresent()) {
-            return userMapper.mapToInnerUserDto(user.get());
-        }
-        throw new UsernameNotFoundException("User not found");
-    }
-
-
     public UserDto createUser(UserDto userDto) {
         if (userDto != null && userDto.getUserName() != null && userDto.getPassword() != null) {
             String password = bCryptPasswordEncoder.encode(userDto.getPassword());

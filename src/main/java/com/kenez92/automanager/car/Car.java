@@ -1,6 +1,7 @@
 package com.kenez92.automanager.car;
 
 import com.kenez92.automanager.fuel.Fuel;
+import com.kenez92.automanager.user.User;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -9,6 +10,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import java.util.List;
@@ -42,6 +44,9 @@ public class Car {
             mappedBy = "car")
     private List<Fuel> fuelList;
 
+    @ManyToOne
+    private User user;
+
     public Car() {
     }
 
@@ -49,7 +54,7 @@ public class Car {
         return id;
     }
 
-    void setId(Long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -57,7 +62,7 @@ public class Car {
         return brand;
     }
 
-    void setBrand(String brand) {
+    public void setBrand(String brand) {
         this.brand = brand;
     }
 
@@ -65,7 +70,7 @@ public class Car {
         return model;
     }
 
-    void setModel(String model) {
+    public void setModel(String model) {
         this.model = model;
     }
 
@@ -73,7 +78,7 @@ public class Car {
         return productionYear;
     }
 
-    void setProductionYear(Integer productionYear) {
+    public void setProductionYear(Integer productionYear) {
         this.productionYear = productionYear;
     }
 
@@ -81,7 +86,7 @@ public class Car {
         return engine;
     }
 
-    void setEngine(String engine) {
+    public void setEngine(String engine) {
         this.engine = engine;
     }
 
@@ -89,7 +94,7 @@ public class Car {
         return fuel;
     }
 
-    void setFuel(String fuel) {
+    public void setFuel(String fuel) {
         this.fuel = fuel;
     }
 
@@ -97,7 +102,15 @@ public class Car {
         return fuelList;
     }
 
-    void setFuelList(List<Fuel> fuelList) {
+    public void setFuelList(List<Fuel> fuelList) {
         this.fuelList = fuelList;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }
