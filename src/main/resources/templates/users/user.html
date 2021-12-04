@@ -2,10 +2,11 @@
 <html lang="en" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8">
-    <title>User</title>
+    <link rel="stylesheet" th:href="@{/style/css/style.css}"/>
+    <title>Użytkownik</title>
 </head>
-<body>
-<form action="/user/createUser" method="post">
+<body class="bg">
+<form action="/users/createUser" method="post">
     <label for="userName">Login:</label><br>
     <input type="text" id="userName" name="userName"><br>
     <label for="password">First name:</label><br>

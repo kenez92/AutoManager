@@ -64,3 +64,16 @@ input {
     text-align: center;
     margin: auto;
 }
+
+.middle-link {
+    font-size: 30px;
+    font_weight: bold;
+    display: block;
+    text-align: center;
+    margin: auto;
+    color: black;
+}
+
+.middle-link:hover {
+    color: crimson;
+}
