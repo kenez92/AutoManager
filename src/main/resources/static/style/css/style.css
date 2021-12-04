@@ -1,11 +1,11 @@
 .bg {
-    background-image: url(../images/background.jpg);
+    background-image: url(../../images/background.jpg);
     background-position: center;
     background-repeat: no-repeat;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
     background-size: cover;
-    height: 100vh;
-    width: 100vw;
-    overflow: hidden
 }
 
 p {
@@ -55,6 +55,7 @@ input {
 .button:active {
     background-color: #616161;
 }
+
 .errors {
     font-size: 30px;
     font-weight: bold;

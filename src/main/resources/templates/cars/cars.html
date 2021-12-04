@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Twoje samochody</title>
+    <link rel="stylesheet" th:href="@{/style/css/style.css}"/>
+</head>
+<body class="bg">
+<table>
+    <thead>
+    <tr th:each="car: ${cars}">
+        <td>
+            <a th:href="${car.id}" th:text="${car.brand} + ' ' + ${car.model} + ' ' + ${car.productionYear}"}></a>
+        </td>
+    </tr>
+    </thead>
+</table>
+</body>
+</html>

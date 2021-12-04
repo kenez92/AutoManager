@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="ie=edge" http-equiv="X-UA-Compatible">
+    <link rel="stylesheet" th:href="@{/style/css/style.css}"/>
+    <title>Dodaj samochód</title>
+</head>
+<body class="bg">
+<form action="/cars/" method="post">
+    <p>Marka</p>
+    <input class="textArea" id="brand" required type="text" name="brand">
+    <p>Model</p>
+    <input class="textArea" id="model" required type="text" name="model">
+    <p>Rok Produkcji</p>
+    <input class="textArea" id="productionYear" required type="number" name="productionYear">
+    <p>Silnik</p>
+    <input class="textArea" id="engine" required type="text" name="engine">
+    <p>Paliwo</p>
+    <input class="textArea" id="fuel" required type="text" name="fuel">
+    <input class="button" type="submit" value="Dodaj samochód">
+</form>
+</body>
+</html>

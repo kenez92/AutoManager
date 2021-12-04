@@ -1,28 +1,28 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Car</title>
+    <title>Samochód</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link rel="stylesheet" th:href="@{/style/css/style.css}"/>
 </head>
 <body>
 <table>
-    <thead>>
+    <thead>
     <tr>
         <td>Marka</td>
         <td>Model</td>
         <td>Rok produkcji</td>
         <td>Silnik</td>
         <td>Paliwo</td>
-        <td></td>
     </tr>
     </thead>
     <tbody>
     <tr>
-        <td th:text="${Car.brand}"></td>
-        <td th:text="${Car.model}"></td>
-        <td th:text="${Car.productionYear}"></td>
-        <td th:text="${Car.engine}"></td>
-        <td th:text="${Car.fuel}"></td>
+        <td th:text="${car.brand}"></td>
+        <td th:text="${car.model}"></td>
+        <td th:text="${car.productionYear}"></td>
+        <td th:text="${car.engine}"></td>
+        <td th:text="${car.fuel}"></td>
     </tr>
     </tbody>
 </table>

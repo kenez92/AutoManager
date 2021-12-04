@@ -1,7 +1,8 @@
 package com.kenez92.automanager.car;
 
 public class CarDto {
-    public String brand;
+    private Long id;
+    private String brand;
     private String model;
     private Integer productionYear;
     private String engine;
@@ -10,12 +11,12 @@ public class CarDto {
     public CarDto() {
     }
 
-    public CarDto(String brand, String model, Integer productionYear, String engine, String fuel) {
-        this.brand = brand;
-        this.model = model;
-        this.productionYear = productionYear;
-        this.engine = engine;
-        this.fuel = fuel;
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getBrand() {

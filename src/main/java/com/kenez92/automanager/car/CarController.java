@@ -5,13 +5,14 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 
 import java.security.Principal;
+import java.util.List;
 
 @Controller
-@RequestMapping("/car")
+@RequestMapping("/cars")
 class CarController {
     private final CarService carService;
 
@@ -21,18 +22,25 @@ class CarController {
 
     @GetMapping("/{id}")
     public String getCarById(Model model, Principal principal, @PathVariable Long id) {
-        model.addAttribute("Car", carService.getById(id, principal));
-        return "car/car";
+        model.addAttribute("car", carService.getById(id, principal));
+        return "cars/car";
     }
 
     @GetMapping("/createCar")
     public String createCar() {
-        return "car/createCar";
+        return "cars/createCar";
     }
 
-    @RequestMapping(value = "/", method = RequestMethod.POST)
+    @PostMapping
     public String createCar(@ModelAttribute("carDto") CarDto carDto, Principal principal) {
         carService.createCar(carDto, principal);
         return "redirect:createCar";
+    }
+
+    @GetMapping
+    public String getCars(Model model, Principal principal) {
+        List<CarDto> cars = carService.getCarsByPrincipal(principal);
+        model.addAttribute("cars", cars);
+        return "cars/cars";
     }
 }

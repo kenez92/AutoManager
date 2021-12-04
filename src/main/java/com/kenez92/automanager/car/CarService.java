@@ -5,6 +5,8 @@ import com.kenez92.automanager.user.UserRepository;
 import org.springframework.stereotype.Service;
 
 import java.security.Principal;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -47,5 +49,13 @@ class CarService {
         } else {
             throw new RuntimeException("Car cannot be empty");
         }
+    }
+
+    public List<CarDto> getCarsByPrincipal(Principal principal) {
+        User user = userRepository.findUserByUserName(principal.getName()).orElseThrow(()
+                -> new RuntimeException("User not found"));
+        List<Car> cars = carRepository.findByUser(user);
+        if(cars.isEmpty()) return new ArrayList<>();
+        return carMapper.mapToCarDtoList(cars);
     }
 }
