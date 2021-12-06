@@ -1,5 +1,6 @@
 package com.kenez92.automanager.car;
 
+import com.kenez92.automanager.user.UserNotFoundException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,8 +23,12 @@ class CarController {
 
     @GetMapping("/{id}")
     public String getCarById(Model model, Principal principal, @PathVariable Long id) {
-        model.addAttribute("car", carService.getById(id, principal));
-        return "cars/car";
+        try {
+            model.addAttribute("car", carService.getById(id, principal));
+            return "cars/car";
+        } catch (UserNotFoundException ex) {
+            return "user/login?error";
+        }
     }
 
     @GetMapping("/createCar")
@@ -33,14 +38,22 @@ class CarController {
 
     @PostMapping
     public String createCar(@ModelAttribute("carDto") CarDto carDto, Principal principal) {
-        carService.createCar(carDto, principal);
-        return "redirect:createCar";
+        try {
+            carService.createCar(carDto, principal);
+            return "redirect:createCar";
+        } catch (UserNotFoundException ex) {
+            return "user/login?error";
+        }
     }
 
     @GetMapping
     public String getCars(Model model, Principal principal) {
-        List<CarDto> cars = carService.getCarsByPrincipal(principal);
-        model.addAttribute("cars", cars);
-        return "cars/cars";
+        try {
+            List<CarDto> cars = carService.getCarsByPrincipal(principal);
+            model.addAttribute("cars", cars);
+            return "cars/cars";
+        } catch (UserNotFoundException ex) {
+            return "login/login";
+        }
     }
 }
