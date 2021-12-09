@@ -1,11 +1,12 @@
 html, body {
-    margin:0;
-    height:100%;
+    margin: 0;
+    height: 100%;
 }
+
 .bg {
     background-image: url(../../images/background.jpg);
-    width:100%;
-    height:100%;
+    width: 100%;
+    height: 100%;
     background-position: center;
     background-repeat: no-repeat;
     -webkit-background-size: cover;
@@ -14,34 +15,13 @@ html, body {
     background-size: cover;
 }
 
-p {
-    font-size: 50px;
-    text-align: center;
-    margin-bottom: 10px;
-}
-
-input {
+.center-element {
     display: block;
-    text-align: center;
     margin: auto;
-    box-shadow: 5px 5px 10px 5px Black;
-    border: 5px solid black;
-}
-
-.textArea {
-    font-size: 30px;
-    height: 35px;
-    width: 300px;
-    background-color: #d1d1d1;
-    border-radius: 30px;
-}
-
-.textArea:focus {
-    outline: none;
+    text-align: center;
 }
 
 .button {
-    margin-top: 40px;
     height: 40px;
     width: 200px;
     border-radius: 30px;
@@ -49,6 +29,7 @@ input {
     font-style: italic;
     font-weight: bold;
     background-color: #d1d1d1;
+    text-align: center;
 }
 
 .button:hover {
@@ -71,15 +52,30 @@ input {
     margin: auto;
 }
 
-.middle-link {
+.bigger-text {
     font-size: 30px;
     font_weight: bold;
     display: block;
-    text-align: center;
-    margin: auto;
     color: black;
 }
 
-.middle-link:hover {
-    color: crimson;
+.bigger-text:hover {
+    color: darkred;
+}
+
+.bigger-input {
+    box-shadow: 5px 5px 10px 5px Black;
+    border: 5px solid black;
+    font-size: 30px;
+    height: 35px;
+    width: 300px;
+    background-color: #d1d1d1;
+    border-radius: 30px;
+}
+
+.bigger-input:focus {
+    outline: none;
+}
+table{
+    width:100%;
 }

@@ -1,17 +1,17 @@
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/html">
 <head>
-    <meta charset="UTF-8">
+<!--    <meta charset="UTF-8">-->
     <link rel="stylesheet" th:href="@{/style/css/style.css}"/>
     <title>User</title>
 </head>
 <body class="bg">
 <form action="/users/createUser" method="post">
-    <label for="userName">Login:</label><br>
-    <input class="single-line" type="text" id="userName" name="userName"><br>
-    <label for="password">First name:</label><br>
-    <input class="single-line" type="password" id="password" name="password"><br>
-    <input class="single-line" type="submit" value="Create account">
+    <label class="bigger-text center-element" for="userName">Login:</label><br>
+    <input class="bigger-input center-element" type="text" id="userName" name="userName"><br>
+    <label class="bigger-text center-element"for="password">First name:</label><br>
+    <input class="bigger-input center-element" type="password" id="password" name="password"><br>
+    <input class="button center-element" type="submit" value="Create account">
 </form>
 
 </body>

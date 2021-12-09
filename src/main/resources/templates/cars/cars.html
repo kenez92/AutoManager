@@ -10,7 +10,8 @@
     <thead>
     <tr th:each="car: ${cars}">
         <td>
-            <a th:href="${car.id}" th:text="${car.brand} + ' ' + ${car.model} + ' ' + ${car.productionYear}"}></a>
+            <a class="bigger-text" th:align="center" th:href="${car.id}" th:text="${car.brand} + ' '
+            + ${car.model} + ' ' + ${car.productionYear}" }></a>
         </td>
     </tr>
     </thead>
