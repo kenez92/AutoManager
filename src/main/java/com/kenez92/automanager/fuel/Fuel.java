@@ -19,37 +19,62 @@ public class Fuel {
     @Column(name = "ID")
     private Long id;
 
-    @Column(name = "Liters", nullable = false, columnDefinition = "DECIMAL(6,2)")
+    @Column(name = "KM_MILEAGE")
+    private Long mileage;
+
+    @Column(name = "KM_TRAVELED")
+    private Double kmTraveled;
+
+    @Column(name = "LITERS", nullable = false, columnDefinition = "DECIMAL(7,2)")
     private Float liters;
 
-    @Column(name = "COMPUTER_AVERAGE_FUEL_CONSUMPTION", columnDefinition = "DECIMAL(5,2)")
+    @Column(name = "COMPUTER_AVERAGE_FUEL_CONSUMPTION", columnDefinition = "DECIMAL(7,2)")
     private Float computerAvgFuelConsumption;
 
-    @Column(name = "REAL_AVERAGE_FUEL_CONSUMPTION", columnDefinition = "DECIMAL(5,2)")
+    @Column(name = "REAL_AVERAGE_FUEL_CONSUMPTION", columnDefinition = "DECIMAL(7,2)")
     private Float realAvgFuelConsumption;
 
-    @Column(name = "DATE")
+    @Column(name = "DATE", nullable = false)
     private Date date;
 
     @Column(name = "COST")
     private Double cost;
 
+    @Column(name = "COST_PER_LITER", columnDefinition = "DECIMAL(5,2)")
+    private Double costPerLiter;
+
     @ManyToOne
     private Car car;
 
-    Long getId() {
+    public Long getId() {
         return id;
     }
 
-    void setId(Long id) {
+    public void setId(Long id) {
         this.id = id;
+    }
+
+    public Long getMileage() {
+        return mileage;
+    }
+
+    public void setMileage(Long mileage) {
+        this.mileage = mileage;
+    }
+
+    public Double getKmTraveled() {
+        return kmTraveled;
+    }
+
+    public void setKmTraveled(Double kmTraveled) {
+        this.kmTraveled = kmTraveled;
     }
 
     public Float getLiters() {
         return liters;
     }
 
-    void setLiters(Float liters) {
+    public void setLiters(Float liters) {
         this.liters = liters;
     }
 
@@ -57,7 +82,7 @@ public class Fuel {
         return computerAvgFuelConsumption;
     }
 
-    void setComputerAvgFuelConsumption(Float computerAvgFuelConsumption) {
+    public void setComputerAvgFuelConsumption(Float computerAvgFuelConsumption) {
         this.computerAvgFuelConsumption = computerAvgFuelConsumption;
     }
 
@@ -65,7 +90,7 @@ public class Fuel {
         return realAvgFuelConsumption;
     }
 
-    void setRealAvgFuelConsumption(Float realAvgFuelConsumption) {
+    public void setRealAvgFuelConsumption(Float realAvgFuelConsumption) {
         this.realAvgFuelConsumption = realAvgFuelConsumption;
     }
 
@@ -73,7 +98,7 @@ public class Fuel {
         return date;
     }
 
-    void setDate(Date date) {
+    public void setDate(Date date) {
         this.date = date;
     }
 
@@ -81,8 +106,16 @@ public class Fuel {
         return cost;
     }
 
-    void setCost(Double cost) {
+    public void setCost(Double cost) {
         this.cost = cost;
+    }
+
+    public Double getCostPerLiter() {
+        return costPerLiter;
+    }
+
+    public void setCostPerLiter(Double costPerLiter) {
+        this.costPerLiter = costPerLiter;
     }
 
     public Car getCar() {
@@ -91,5 +124,32 @@ public class Fuel {
 
     void setCar(Car car) {
         this.car = car;
+    }
+
+    public void calculateRealAvgConsumptionByKmTraveled() {
+        if (liters != null && kmTraveled != null) {
+            float result = (float) (liters / kmTraveled) * 100;
+            if (result > 0) {
+                realAvgFuelConsumption = result;
+            }
+        }
+    }
+
+    public void calculateRealAvgConsumptionByMileage(Long lastMileage) {
+        if (lastMileage != null && mileage != null && liters != null) {
+            float result = (mileage - lastMileage) / liters * 100;
+            if (result > 0) {
+                realAvgFuelConsumption = result;
+            }
+        }
+    }
+
+    public void calculateCostPerLiter() {
+        if (liters != null && cost != null) {
+            double result = cost / liters;
+            if (result > 0) {
+                costPerLiter = result;
+            }
+        }
     }
 }

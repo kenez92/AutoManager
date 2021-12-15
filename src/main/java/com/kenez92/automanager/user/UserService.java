@@ -6,6 +6,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.security.Principal;
 import java.util.Optional;
 
 @Service
@@ -39,5 +40,14 @@ public class UserService implements UserDetailsService {
             return userMapper.mapToInnerUserDto(savedUser);
         }
         throw new RuntimeException("Username and password cannot be empty");
+    }
+
+    public User getUserByPrincipal(Principal principal) throws UserNotFoundException {
+        if (principal == null) {
+            throw new UserNotFoundException("You have to log in first !");
+        } else {
+            return userRepository.findUserByUserName(principal.getName()).orElseThrow(()
+                    -> new UserNotFoundException("User not found"));
+        }
     }
 }

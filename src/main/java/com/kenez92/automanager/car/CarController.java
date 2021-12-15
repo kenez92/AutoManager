@@ -28,6 +28,8 @@ class CarController {
             return "cars/car";
         } catch (UserNotFoundException ex) {
             return "user/login?error";
+        } catch (CarException ex) {
+            return "cars/car"; //todo temporary return createCar
         }
     }
 
@@ -43,6 +45,8 @@ class CarController {
             return "redirect:createCar";
         } catch (UserNotFoundException ex) {
             return "user/login?error";
+        } catch (CarException ex) {
+            return "redirect:createCar"; //todo temporary return createCar
         }
     }
 

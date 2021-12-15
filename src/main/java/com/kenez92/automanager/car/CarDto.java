@@ -1,5 +1,9 @@
 package com.kenez92.automanager.car;
 
+import com.kenez92.automanager.fuel.FuelDto;
+
+import java.util.List;
+
 public class CarDto {
     private Long id;
     private String brand;
@@ -7,6 +11,7 @@ public class CarDto {
     private Integer productionYear;
     private String engine;
     private String fuel;
+    private List<FuelDto> fuelDtoList;
 
     public CarDto() {
     }
