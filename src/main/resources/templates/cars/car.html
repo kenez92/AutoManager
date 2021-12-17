@@ -67,20 +67,43 @@
 
 <div id="Default" class="tabcontent">
     <span onclick="this.parentElement.style.display='none'" class="topright">&times</span>
-    <h3>General</h3>
-    <p>General information about your car</p>
-    <p th:text="${car.brand}"></p>
-    <p th:text="${car.model}"></p>
-    <p th:text="${car.productionYear}"></p>
-    <p th:text="${car.engine}"></p>
-    <p th:text="${car.fuel}"></p>
+    <h3 class="center-element">General</h3>
+    <p class="center-element">General information about your car</p>
+    <table>
+
+    </table>
+    <p th:align="center" th:text="${car.brand}"></p>
+    <p th:align="center" th:text="${car.model}"></p>
+    <p th:align="center" th:text="${car.productionYear}"></p>
+    <p th:align="center" th:text="${car.engine}"></p>
+    <p th:align="center" th:text="${car.fuel}"></p>
 </div>
 
 <div id="Refuelling" class="tabcontent">
     <span onclick="this.parentElement.style.display='none'" class="topright">&times</span>
-    <h3>Refuelling</h3>
-    <p>Refuelling car
-    <p>
+    <h3 class="center-element">Refuelling</h3>
+    <p class="center-element">Refuelling car</p>
+    <button id="addRefuelButton" onclick="showRefuelForm()">Dodaj tankowanie</button>
+
+    <iframe name="dummyframe" id="dummyframe" style="display: none;"></iframe>
+    <form style="display:none" id="addRefuelFrom" action="/fuel/add/" method="post" target="dummyframe">
+        <input type="hidden" th:value="${car.id}" name="carId"/>
+        <p>Przebieg samochodu</p>
+        <input class="textArea" id="mileage" type="number" name="mileage">
+        <p>Ilość przejechanych kilometrów</p>
+        <input class="textArea" id="kmTraveled" type="number" name="kmTraveled">
+        <p>Zatankowane litry paliwa</p>
+        <input class="textArea" id="liters" required type="number" name="liters">
+        <p>Średnie spalanie (wyliczone przez komputer samochodowy)</p>
+        <input class="textArea" id="computerAvgFuelConsumption" type="number"
+               name="computerAvgFuelConsumption">
+        <p>Data</p>
+        <input class="textArea" id="date" required type="date" name="date">
+        <p>Cena</p>
+        <input class="textArea" id="cost" type="number" name="cost">
+        <input class="button" type="submit" value="Dodaj tankowanie">
+    </form>
+
 </div>
 
 <div id="Repairs" class="tabcontent">
@@ -88,7 +111,6 @@
     <h3>Repairs</h3>
     <p>Repairs</p>
 </div>
-
 <script>
     function openCity(evt, cityName) {
         var i, tabcontent, tablinks;
@@ -106,7 +128,22 @@
 
     // Get the element with id="defaultOpen" and click on it
     document.getElementById("defaultOpen").click();
+
+    function showRefuelForm() {
+        var button = document.getElementById("addRefuelButton");
+        if (button.textContent === 'Dodaj tankowanie') {
+            button.textContent = 'Schowaj';
+            document.getElementById("addRefuelFrom").style.display = "block";
+            document.getElementById('date').valueAsDate = new Date();
+        } else {
+            button.textContent = 'Dodaj tankowanie';
+            document.getElementById("addRefuelFrom").style.display = "none";
+        }
+    }
+
+
 </script>
+
 
 </body>
 </html>
