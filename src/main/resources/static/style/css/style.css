@@ -43,6 +43,21 @@ html, body {
     background-color: #616161;
 }
 
+.button-normal {
+    height: 30px;
+    width: 185px;
+    border-radius: 30px;
+    font-size: 15px;
+    font-style: italic;
+    font-weight: bold;
+    background-color: #d1d1d1;
+    text-align: center;
+}
+
+.button-normal:active {
+    background-color: #616161;
+}
+
 .errors {
     font-size: 30px;
     font-weight: bold;
@@ -54,7 +69,7 @@ html, body {
 
 .bigger-text {
     font-size: 30px;
-    font_weight: bold;
+    font-weight: bold;
     display: block;
     color: black;
 }
@@ -76,6 +91,26 @@ html, body {
 .bigger-input:focus {
     outline: none;
 }
-table{
-    width:100%;
+
+table {
+    width: 100%;
+}
+
+.label-with-input {
+    display: block;
+    margin-top: 10px;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.normal-input {
+    box-shadow: 2px 2px 5px 2px Black;
+    border: 2px solid black;
+    font-size: 15px;
+    height: 15px;
+    width: 175px;
+    background-color: #d1d1d1;
+    border-radius: 30px;
+    float: left;
+    text-align: right;
 }
