@@ -83,25 +83,32 @@
     <span onclick="this.parentElement.style.display='none'" class="topright">&times</span>
     <h3 class="center-element">Refuelling</h3>
     <p class="center-element">Refuelling car</p>
-    <button id="addRefuelButton" onclick="showRefuelForm()">Dodaj tankowanie</button>
+    <button class="button-normal" id="addRefuelButton" onclick="showRefuelForm()">Dodaj tankowanie</button>
 
     <iframe name="dummyframe" id="dummyframe" style="display: none;"></iframe>
     <form style="display:none" id="addRefuelFrom" action="/fuel/add/" method="post" target="dummyframe">
         <input type="hidden" th:value="${car.id}" name="carId"/>
-        <p>Przebieg samochodu</p>
-        <input class="textArea" id="mileage" type="number" name="mileage">
-        <p>Ilość przejechanych kilometrów</p>
-        <input class="textArea" id="kmTraveled" type="number" name="kmTraveled">
-        <p>Zatankowane litry paliwa</p>
-        <input class="textArea" id="liters" required type="number" name="liters">
-        <p>Średnie spalanie (wyliczone przez komputer samochodowy)</p>
-        <input class="textArea" id="computerAvgFuelConsumption" type="number"
-               name="computerAvgFuelConsumption">
-        <p>Data</p>
-        <input class="textArea" id="date" required type="date" name="date">
-        <p>Cena</p>
-        <input class="textArea" id="cost" type="number" name="cost">
-        <input class="button" type="submit" value="Dodaj tankowanie">
+        <label class="label-with-input" for="mileage">&numsp;Przebieg samochodu
+            <input class="normal-input" id="mileage" type="number" name="mileage">
+        </label>
+        <label class="label-with-input" for="kmTraveled">&numsp;Ilość przejechanych kilometrów
+            <input class="normal-input" id="kmTraveled" type="number" name="kmTraveled">
+        </label>
+        <label class="label-with-input" for="liters">&numsp;Zatankowane litry paliwa
+            <input class="normal-input" id="liters" required type="number" name="liters">
+        </label>
+        <label class="label-with-input" for="computerAvgFuelConsumption">&numsp;Średnie spalanie (wyliczone przez
+            komputer samochodowy)
+            <input class="normal-input" id="computerAvgFuelConsumption" type="number"
+                   name="computerAvgFuelConsumption">
+        </label>
+        <label class="label-with-input" for="date">&numsp;Data
+            <input class="normal-input" id="date" required type="date" name="date">
+        </label>
+        <label class="label-with-input" for="cost">&numsp;Cena
+            <input class="normal-input" id="cost" type="number" name="cost">
+        </label>
+        <input style="margin-top: 10px" class="button-normal" type="submit" value="Dodaj tankowanie">
     </form>
 
 </div>
