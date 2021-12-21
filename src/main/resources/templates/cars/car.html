@@ -60,57 +60,58 @@
 <body class="bg">
 
 <div class="tab">
-    <button class="tablinks" onclick="openCity(event, 'Default')" id="defaultOpen">General</button>
-    <button class="tablinks" onclick="openCity(event, 'Refuelling')">Refuelling</button>
-    <button class="tablinks" onclick="openCity(event, 'Repairs')">Repairs</button>
+    <button class="tablinks" onclick="openTab(event, 'Default')" id="defaultOpen">Główne</button>
+    <button class="tablinks" onclick="openTab(event, 'Refuelling')">Tankowania</button>
+    <button class="tablinks" onclick="openTab(event, 'Repairs')">Naprawy</button>
 </div>
 
 <div id="Default" class="tabcontent">
     <span onclick="this.parentElement.style.display='none'" class="topright">&times</span>
-    <h3 class="center-element">General</h3>
-    <p class="center-element">General information about your car</p>
-    <table>
-
-    </table>
-    <p th:align="center" th:text="${car.brand}"></p>
-    <p th:align="center" th:text="${car.model}"></p>
-    <p th:align="center" th:text="${car.productionYear}"></p>
-    <p th:align="center" th:text="${car.engine}"></p>
-    <p th:align="center" th:text="${car.fuel}"></p>
+    <h1>Główne</h1>
+    <div class="left-column">
+        <p>Marka: </p>
+        <p>Model: </p>
+        <p>Rok produkcji: </p>
+        <p>Silnik: </p>
+        <p>Paliwo: </p>
+    </div>
+    <div class="right-column">
+        <p th:text="${car.brand}"></p>
+        <p th:text="${car.model}"></p>
+        <p th:text="${car.productionYear}"></p>
+        <p th:text="${car.engine}"></p>
+        <p th:text="${car.fuel}"></p>
+    </div>
 </div>
 
 <div id="Refuelling" class="tabcontent">
     <span onclick="this.parentElement.style.display='none'" class="topright">&times</span>
-    <h3 class="center-element">Refuelling</h3>
-    <p class="center-element">Refuelling car</p>
+    <h1>Tankowania samochodu</h1>
     <button class="button-normal" id="addRefuelButton" onclick="showRefuelForm()">Dodaj tankowanie</button>
 
-    <iframe name="dummyframe" id="dummyframe" style="display: none;"></iframe>
-    <form style="display:none" id="addRefuelFrom" action="/fuel/add/" method="post" target="dummyframe">
+    <form style="display:none" id="addRefuelFrom" action="/fuel/add/" method="post">
         <input type="hidden" th:value="${car.id}" name="carId"/>
-        <label class="label-with-input" for="mileage">&numsp;Przebieg samochodu
+        <div class="left-column">
             <input class="normal-input" id="mileage" type="number" name="mileage">
-        </label>
-        <label class="label-with-input" for="kmTraveled">&numsp;Ilość przejechanych kilometrów
             <input class="normal-input" id="kmTraveled" type="number" name="kmTraveled">
-        </label>
-        <label class="label-with-input" for="liters">&numsp;Zatankowane litry paliwa
             <input class="normal-input" id="liters" required type="number" name="liters">
-        </label>
-        <label class="label-with-input" for="computerAvgFuelConsumption">&numsp;Średnie spalanie (wyliczone przez
-            komputer samochodowy)
             <input class="normal-input" id="computerAvgFuelConsumption" type="number"
                    name="computerAvgFuelConsumption">
-        </label>
-        <label class="label-with-input" for="date">&numsp;Data
             <input class="normal-input" id="date" required type="date" name="date">
-        </label>
-        <label class="label-with-input" for="cost">&numsp;Cena
             <input class="normal-input" id="cost" type="number" name="cost">
-        </label>
-        <input style="margin-top: 10px" class="button-normal" type="submit" value="Dodaj tankowanie">
+            <input class="button-normal" type="submit" value="Dodaj tankowanie">
+        </div>
+        <div class="right-column">
+            <label class="label" for="mileage">Przebieg samochodu</label>
+            <label class="label" for="kmTraveled">Ilość przejechanych kilometrów</label>
+            <label class="label" for="liters">Zatankowane litry paliwa</label>
+            <label class="label" for="computerAvgFuelConsumption">Średnie spalanie (wyliczone przez
+                komputer samochodowy)</label>
+            <label class="label" for="date">Data</label>
+            <label class="label" for="cost">Cena</label>
+            <div style="height: 50px"></div>
+        </div>
     </form>
-
 </div>
 
 <div id="Repairs" class="tabcontent">
@@ -119,7 +120,7 @@
     <p>Repairs</p>
 </div>
 <script>
-    function openCity(evt, cityName) {
+    function openTab(evt, tabName) {
         var i, tabcontent, tablinks;
         tabcontent = document.getElementsByClassName("tabcontent");
         for (i = 0; i < tabcontent.length; i++) {
@@ -129,7 +130,7 @@
         for (i = 0; i < tablinks.length; i++) {
             tablinks[i].className = tablinks[i].className.replace(" active", "");
         }
-        document.getElementById(cityName).style.display = "block";
+        document.getElementById(tabName).style.display = "block";
         evt.currentTarget.className += " active";
     }
 
