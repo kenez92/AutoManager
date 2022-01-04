@@ -3,12 +3,10 @@ package com.kenez92.automanager.fuel;
 import com.kenez92.automanager.car.CarException;
 import com.kenez92.automanager.user.UserNotFoundException;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 
 import java.security.Principal;
 
@@ -19,11 +17,6 @@ class FuelController {
 
     public FuelController(FuelService fuelService) {
         this.fuelService = fuelService;
-    }
-
-    @GetMapping("/{id}")
-    public FuelDto getFuelById(@PathVariable Long id) {
-        return fuelService.getById(id);
     }
 
     @PostMapping("/add")
@@ -38,5 +31,15 @@ class FuelController {
         } else {
             return "redirect:/cars";
         }
+    }
+
+    @PostMapping("/{carId}/{fuelId}")
+    public String deleteFuel(Principal principal, @PathVariable Long carId, @PathVariable Long fuelId) {
+        try {
+            fuelService.deleteFuel(principal, fuelId);
+        } catch (UserNotFoundException | FuelException e) {
+            e.printStackTrace();
+        }
+        return "redirect:/cars/" + carId;
     }
 }

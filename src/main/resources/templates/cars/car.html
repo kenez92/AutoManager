@@ -112,6 +112,18 @@
             <div style="height: 50px"></div>
         </div>
     </form>
+
+    <table>
+        <thead>
+        <tr th:each="fuel: ${cars.fuelDto}">
+            <td>
+            <td th:text="${fuel.id}"/>
+            <td th:text="${fuel.mileage}"/>
+
+            </td>
+        </tr>
+        </thead>
+    </table>
 </div>
 
 <div id="Repairs" class="tabcontent">

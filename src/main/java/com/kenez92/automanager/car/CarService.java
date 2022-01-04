@@ -1,5 +1,6 @@
 package com.kenez92.automanager.car;
 
+import com.kenez92.automanager.fuel.FuelService;
 import com.kenez92.automanager.user.User;
 import com.kenez92.automanager.user.UserNotFoundException;
 import com.kenez92.automanager.user.UserService;
@@ -23,7 +24,7 @@ public class CarService {
 
     CarDto getById(Long id, Principal principal) throws UserNotFoundException, CarException {
         if (id != null) {
-            Car car = carRepository.findById(id).orElseThrow(()
+            Car car = carRepository.getWithFuelById(id).orElseThrow(()
                     -> new RuntimeException("Car not found"));
             User user = userService.getUserByPrincipal(principal);
             if (car.getUser().getId().equals(user.getId())) {
