@@ -43,9 +43,6 @@ public class Fuel {
     @Column(name = "COST_PER_LITER", columnDefinition = "DECIMAL(5,2)")
     private Double costPerLiter;
 
-    @Column(name = "USER_ID", nullable = false)
-    private Long userId;
-
     @ManyToOne
     private Car car;
 
@@ -119,14 +116,6 @@ public class Fuel {
 
     public void setCostPerLiter(Double costPerLiter) {
         this.costPerLiter = costPerLiter;
-    }
-
-    public Long getUserId() {
-        return userId;
-    }
-
-    public void setUserId(Long userId) {
-        this.userId = userId;
     }
 
     public Car getCar() {

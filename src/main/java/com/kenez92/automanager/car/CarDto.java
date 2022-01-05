@@ -63,12 +63,4 @@ public class CarDto {
     public void setFuel(String fuel) {
         this.fuel = fuel;
     }
-
-    public List<FuelDto> getFuelDtoList() {
-        return fuelDtoList;
-    }
-
-    public void setFuelDtoList(List<FuelDto> fuelDtoList) {
-        this.fuelDtoList = fuelDtoList;
-    }
 }

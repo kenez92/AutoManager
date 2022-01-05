@@ -10,4 +10,9 @@ interface FuelRepository extends JpaRepository<Fuel, Long> {
 
     @Query(nativeQuery = true, value = "SELECT MAX(km_mileage) FROM fuel where car_id =:carId")
     Long findMaxMileage(Long carId);
+
+//        @Query("SELECT m FROM Manifest m JOIN FETCH m.items WHERE m.id = ?1")
+
+//        @Query("SELECT m.id FROM Manifest m WHERE m.tmsDocument.tmsLineHaulStopPoint.id IN (?1)")
+//    List<Long> findIdByTmsDocumentTmsLineHaulStopPointIdIn(List<Long> idsTmsLineHaulStopPoints);
 }

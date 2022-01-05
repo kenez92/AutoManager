@@ -9,9 +9,10 @@ import com.kenez92.automanager.user.UserService;
 import org.springframework.stereotype.Service;
 
 import java.security.Principal;
+import java.util.Optional;
 
 @Service
-public class FuelService {
+class FuelService {
     private final FuelMapper fuelMapper;
     private final FuelRepository fuelRepository;
     private final UserService userService;
@@ -22,6 +23,17 @@ public class FuelService {
         this.fuelRepository = fuelRepository;
         this.userService = userService;
         this.carService = carService;
+    }
+
+    FuelDto getById(Long id) {
+        if (id != null) {
+            Optional<Fuel> fuel = fuelRepository.findById(id);
+            if (fuel.isPresent()) {
+                return fuelMapper.mapToFuelDto(fuel.get());
+            }
+            throw new RuntimeException("Fuel not found");
+        }
+        throw new RuntimeException("Fuel id cannot be empty");
     }
 
     public void addFuel(FuelDto fuelDto, Principal principal) throws UserNotFoundException, CarException, FuelException {
@@ -37,23 +49,12 @@ public class FuelService {
                 }
                 fuel.calculateCostPerLiter();
                 fuel.setCar(car);
-                fuel.setUserId(user.getId());
                 fuelRepository.save(fuel);
             } else {
                 throw new CarException("This car dont belongs to you!");
             }
         } else {
             throw new FuelException("Fuel cannot be null");
-        }
-    }
-
-    public void deleteFuel(Principal principal, Long id) throws UserNotFoundException, FuelException {
-        User user = userService.getUserByPrincipal(principal);
-        Fuel fuel = fuelRepository.findById(id).orElseThrow(() -> new FuelException("Fuel not found!"));
-        if (fuel.getUserId().equals(user.getId())) {
-            fuelRepository.delete(fuel);
-        } else {
-            throw new FuelException("This information dont belongs to your account");
         }
     }
 }

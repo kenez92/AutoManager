@@ -1,7 +1,6 @@
 package com.kenez92.automanager.fuel;
 
 public class FuelDto {
-    private Long id;
     private Long carId;
     private Long mileage;
     private Double kmTraveled;
@@ -11,14 +10,6 @@ public class FuelDto {
     private String date;
     private Double cost;
     private Double costPerLiter;
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     public Long getCarId() {
         return carId;
