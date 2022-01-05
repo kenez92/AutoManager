@@ -89,29 +89,81 @@
     <h1>Tankowania samochodu</h1>
     <button class="button-normal" id="addRefuelButton" onclick="showRefuelForm()">Dodaj tankowanie</button>
 
-    <form style="display:none" id="addRefuelFrom" action="/fuel/add/" method="post">
-        <input type="hidden" th:value="${car.id}" name="carId"/>
-        <div class="left-column">
-            <input class="normal-input" id="mileage" type="number" name="mileage">
-            <input class="normal-input" id="kmTraveled" type="number" name="kmTraveled">
-            <input class="normal-input" id="liters" required type="number" name="liters">
-            <input class="normal-input" id="computerAvgFuelConsumption" type="number"
-                   name="computerAvgFuelConsumption">
-            <input class="normal-input" id="date" required type="date" name="date">
-            <input class="normal-input" id="cost" type="number" name="cost">
-            <input class="button-normal" type="submit" value="Dodaj tankowanie">
-        </div>
-        <div class="right-column">
-            <label class="label" for="mileage">Przebieg samochodu</label>
-            <label class="label" for="kmTraveled">Ilość przejechanych kilometrów</label>
-            <label class="label" for="liters">Zatankowane litry paliwa</label>
-            <label class="label" for="computerAvgFuelConsumption">Średnie spalanie (wyliczone przez
-                komputer samochodowy)</label>
-            <label class="label" for="date">Data</label>
-            <label class="label" for="cost">Cena</label>
-            <div style="height: 50px"></div>
-        </div>
+    <form style="display:none" id="addRefuelFrom" action="/refuel/add/" method="post">
+        <table class="fuelTable">
+            <tr>
+                <th>Data</th>
+                <th>Przebieg samochodu</th>
+                <th>Przejechane KM</th>
+                <th>Litry</th>
+                <th>Średnie spalanie</th>
+                <th>Prawdziwe średnie spalanie</th>
+                <th>Koszt</th>
+                <th>Cena za litr</th>
+                <th>Dodaj</th>
+            </tr>
+            <tr>
+                <td>
+                    <input class="" id="date" required type="date" name="date">
+                </td>
+                <td>
+                    <input class="" id="mileage" type="number" name="mileage">
+                </td>
+                <td>
+                    <input class="" id="kmTraveled" type="number" name="kmTraveled">
+                </td>
+                <td>
+                    <input class="" id="liters" required type="number" name="liters">
+                </td>
+                <td>
+                    <input class="" id="computerAvgFuelConsumption" type="number"
+                           name="computerAvgFuelConsumption">
+                </td>
+                <td>
+                    <input class="" id="realAvgFuelConsumption" type="number"
+                           name="realAvgFuelConsumption">
+                </td>
+                <td>
+                    <input class="" id="cost" type="number" name="cost">
+                </td>
+                <td>
+                    <input class="" id="costPerLiter" type="number" name="cost">
+                </td>
+                <td>
+                    <input class="button-normal" type="submit" value="Dodaj tankowanie">
+                </td>
+            </tr>
+            </tbody>
+        </table>
     </form>
+
+    <table class="fuelTable">
+        <thead>
+        <tr>
+            <th>Data</th>
+            <th>Przebieg samochodu</th>
+            <th>Przejechane KM</th>
+            <th>Litry</th>
+            <th>Średnie spalanie</th>
+            <th>Prawdziwe średnie spalanie</th>
+            <th>Koszt</th>
+            <th>Cena za litr</th>
+            <th>Usuń</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="refuel: ${car.refuelDtoList}">
+            <td th:text="${refuel.date}"/>
+            <td th:text="${refuel.mileage}"/>
+            <td th:text="${refuel.kmTraveled}"/>
+            <td th:text="${refuel.liters}"/>
+            <td th:text="${refuel.computerAvgFuelConsumption}"/>
+            <td th:text="${refuel.realAvgFuelConsumption}"/>
+            <td th:text="${refuel.cost}"/>
+            <td th:text="${refuel.costPerLiter}"/>
+        </tr>
+        </tbody>
+    </table>
 </div>
 
 <div id="Repairs" class="tabcontent">
@@ -142,7 +194,7 @@
         if (button.textContent === 'Dodaj tankowanie') {
             button.textContent = 'Schowaj';
             document.getElementById("addRefuelFrom").style.display = "block";
-            document.getElementById('date').valueAsDate = new Date();
+            document.getElementById("date").textContent = new Date().toISOString().substring(0, 19);
         } else {
             button.textContent = 'Dodaj tankowanie';
             document.getElementById("addRefuelFrom").style.display = "none";

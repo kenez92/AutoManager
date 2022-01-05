@@ -32,6 +32,8 @@ table {
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
+    overflow: auto;
+    background-attachment: fixed;
 }
 
 .center-element {
@@ -64,7 +66,6 @@ table {
 
 .button-normal {
     height: 30px;
-    width: 185px;
     border-radius: 30px;
     font-size: 15px;
     font-style: italic;
@@ -135,7 +136,7 @@ table {
     overflow: auto;
 }
 
-.right-column p, .left-column p  {
+.right-column p, .left-column p {
     margin: auto;
     vertical-align: middle;
     line-height: 40px;
@@ -143,4 +144,20 @@ table {
     font-size: 25px;
     font-weight: bold;
     overflow: auto;
+}
+
+.fuelTable td {
+    border: solid 1px black;
+    font-size: 15px;
+}
+
+.fuelTable th {
+    border: solid 2px black;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.fuelTable input {
+    width: 100%;
+    box-sizing: border-box;
 }
