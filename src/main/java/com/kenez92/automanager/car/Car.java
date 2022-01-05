@@ -1,6 +1,6 @@
 package com.kenez92.automanager.car;
 
-import com.kenez92.automanager.fuel.Fuel;
+import com.kenez92.automanager.refuel.Refuel;
 import com.kenez92.automanager.user.User;
 
 import javax.persistence.CascadeType;
@@ -42,7 +42,7 @@ public class Car {
             cascade = CascadeType.ALL,
             fetch = FetchType.LAZY,
             mappedBy = "car")
-    private List<Fuel> fuelList;
+    private List<Refuel> refuelList;
 
     @ManyToOne
     private User user;
@@ -98,12 +98,12 @@ public class Car {
         this.fuel = fuel;
     }
 
-    public List<Fuel> getFuelList() {
-        return fuelList;
+    public List<Refuel> getRefuelList() {
+        return refuelList;
     }
 
-    public void setFuelList(List<Fuel> fuelList) {
-        this.fuelList = fuelList;
+    public void setRefuelList(List<Refuel> refuelList) {
+        this.refuelList = refuelList;
     }
 
     public User getUser() {

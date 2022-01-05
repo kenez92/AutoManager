@@ -1,4 +1,4 @@
-package com.kenez92.automanager.fuel;
+package com.kenez92.automanager.refuel;
 
 import com.kenez92.automanager.car.Car;
 
@@ -12,8 +12,8 @@ import javax.persistence.Table;
 import java.util.Date;
 
 @Entity
-@Table(name = "FUEL")
-public class Fuel {
+@Table(name = "REFUEL")
+public class Refuel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID")
@@ -42,6 +42,9 @@ public class Fuel {
 
     @Column(name = "COST_PER_LITER", columnDefinition = "DECIMAL(5,2)")
     private Double costPerLiter;
+
+    @Column(name = "USER_ID", nullable = false)
+    private Long userId;
 
     @ManyToOne
     private Car car;
@@ -116,6 +119,14 @@ public class Fuel {
 
     public void setCostPerLiter(Double costPerLiter) {
         this.costPerLiter = costPerLiter;
+    }
+
+    public Long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Long userId) {
+        this.userId = userId;
     }
 
     public Car getCar() {

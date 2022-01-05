@@ -1,6 +1,6 @@
 package com.kenez92.automanager.car;
 
-import com.kenez92.automanager.fuel.FuelDto;
+import com.kenez92.automanager.refuel.RefuelDto;
 
 import java.util.List;
 
@@ -11,7 +11,7 @@ public class CarDto {
     private Integer productionYear;
     private String engine;
     private String fuel;
-    private List<FuelDto> fuelDtoList;
+    private List<RefuelDto> refuelDtoList;
 
     public CarDto() {
     }
@@ -62,5 +62,13 @@ public class CarDto {
 
     public void setFuel(String fuel) {
         this.fuel = fuel;
+    }
+
+    public List<RefuelDto> getRefuelDtoList() {
+        return refuelDtoList;
+    }
+
+    public void setRefuelDtoList(List<RefuelDto> refuelDtoList) {
+        this.refuelDtoList = refuelDtoList;
     }
 }
