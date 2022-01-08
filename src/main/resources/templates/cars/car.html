@@ -90,6 +90,7 @@
     <button class="button-normal" id="addRefuelButton" onclick="showRefuelForm()">Dodaj tankowanie</button>
 
     <form style="display:none" id="addRefuelFrom" action="/refuel/add/" method="post">
+        <input type="hidden" name="carId" th:value="${car.id}">
         <table class="fuelTable">
             <tr>
                 <th>Data</th>
@@ -104,30 +105,30 @@
             </tr>
             <tr>
                 <td>
-                    <input class="" id="date" required type="date" name="date">
+                    <input class="" id="date" required type="datetime-local" name="date" step="1">
                 </td>
                 <td>
                     <input class="" id="mileage" type="number" name="mileage">
                 </td>
                 <td>
-                    <input class="" id="kmTraveled" type="number" name="kmTraveled">
+                    <input class="" id="kmTraveled" type="number" name="kmTraveled" step="0.1">
                 </td>
                 <td>
-                    <input class="" id="liters" required type="number" name="liters">
+                    <input class="" id="liters" required type="number" name="liters" step="0.1">
                 </td>
                 <td>
                     <input class="" id="computerAvgFuelConsumption" type="number"
-                           name="computerAvgFuelConsumption">
+                           name="computerAvgFuelConsumption" step="0.1">
                 </td>
                 <td>
                     <input class="" id="realAvgFuelConsumption" type="number"
-                           name="realAvgFuelConsumption">
+                           name="realAvgFuelConsumption" step="0.1">
                 </td>
                 <td>
-                    <input class="" id="cost" type="number" name="cost">
+                    <input class="" id="cost" type="number" name="cost" step="0.01">
                 </td>
                 <td>
-                    <input class="" id="costPerLiter" type="number" name="cost">
+                    <input class="" id="costPerLiter" type="number" name="cost" step="0.01">
                 </td>
                 <td>
                     <input class="button-normal" type="submit" value="Dodaj tankowanie">
@@ -161,6 +162,12 @@
             <td th:text="${refuel.realAvgFuelConsumption}"/>
             <td th:text="${refuel.cost}"/>
             <td th:text="${refuel.costPerLiter}"/>
+            <td>
+                <button class="button" style="width: auto; text-align: center"
+                        th:onclick="deleteRefuel([[${car.id}]], [[${refuel.id}]])">
+                    Usuń
+                </button>
+            </td>
         </tr>
         </tbody>
     </table>
@@ -194,11 +201,20 @@
         if (button.textContent === 'Dodaj tankowanie') {
             button.textContent = 'Schowaj';
             document.getElementById("addRefuelFrom").style.display = "block";
-            document.getElementById("date").textContent = new Date().toISOString().substring(0, 19);
+            document.getElementById("date").value = new Date().toISOString().substring(0, 19);
         } else {
             button.textContent = 'Dodaj tankowanie';
             document.getElementById("addRefuelFrom").style.display = "none";
         }
+    }
+
+    function deleteRefuel(carId, refuelId) {
+        console.log("id = " + refuelId)
+        const form = document.createElement('form');
+        form.method = 'post';
+        form.action = "/refuel/" + carId + "/" + refuelId + "/";
+        document.body.appendChild(form);
+        form.submit();
     }
 
 

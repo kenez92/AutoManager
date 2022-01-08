@@ -55,9 +55,6 @@ table {
 
 .button:hover {
     background-color: #8f8f8f;
-    height: 40px;
-    width: 200px;
-    font-size: 25px;
 }
 
 .button:active {
@@ -160,4 +157,7 @@ table {
 .fuelTable input {
     width: 100%;
     box-sizing: border-box;
+}
+.createCar {
+    text-align: center;
 }
