@@ -9,6 +9,7 @@ import com.kenez92.automanager.user.UserService;
 import org.springframework.stereotype.Service;
 
 import java.security.Principal;
+import java.util.Objects;
 
 @Service
 public class RefuelService {
@@ -54,6 +55,17 @@ public class RefuelService {
             refuelRepository.delete(refuel);
         } else {
             throw new RefuelException("This information dont belongs to your account");
+        }
+    }
+
+    public void editRefuel(Principal principal, RefuelDto refuelDto, Long carId) throws UserNotFoundException, RefuelException {
+        if (refuelDto != null && refuelDto.getId() != null) {
+            User user = userService.getUserByPrincipal(principal);
+            Refuel refuel = refuelRepository.findById(refuelDto.getId()).orElseThrow(() -> new RefuelException("Fuel not found!"));
+            if (refuel.getUserId().equals(user.getId())) {
+                refuel.updateRefuel(refuelDto);
+                refuelRepository.save(refuel);
+            }
         }
     }
 }

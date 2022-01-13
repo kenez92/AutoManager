@@ -34,10 +34,20 @@ class RefuelController {
     }
 
     @PostMapping("/{carId}/{refuelId}")
-    public String deleteFuel(Principal principal, @PathVariable Long carId, @PathVariable Long refuelId) {
+    public String deleteRefuel(Principal principal, @PathVariable Long carId, @PathVariable Long refuelId) {
         try {
             refuelService.deleteRefuel(principal, refuelId);
         } catch (UserNotFoundException | RefuelException e) {
+            e.printStackTrace();
+        }
+        return "redirect:/cars/" + carId;
+    }
+
+    @PostMapping("/{carId}")
+    public String editRefuel(Principal principal, @PathVariable Long carId, @ModelAttribute RefuelDto refuelDto) {
+        try {
+            refuelService.editRefuel(principal, refuelDto, carId);
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return "redirect:/cars/" + carId;

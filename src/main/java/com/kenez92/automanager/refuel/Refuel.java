@@ -9,7 +9,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Objects;
 
 @Entity
 @Table(name = "REFUEL")
@@ -160,6 +163,40 @@ public class Refuel {
             double result = cost / liters;
             if (result > 0) {
                 costPerLiter = result;
+            }
+        }
+    }
+
+    public void updateRefuel(RefuelDto refuelDto) {
+        if (refuelDto != null) {
+            if (!Objects.equals(mileage, refuelDto.getMileage())) {
+                mileage = refuelDto.getMileage();
+            }
+            if (!Objects.equals(kmTraveled, refuelDto.getKmTraveled())) {
+                kmTraveled = refuelDto.getKmTraveled();
+            }
+            if (!Objects.equals(liters, refuelDto.getLiters())) {
+                liters = refuelDto.getLiters();
+            }
+            if (!Objects.equals(computerAvgFuelConsumption, refuelDto.getComputerAvgFuelConsumption())) {
+                computerAvgFuelConsumption = refuelDto.getComputerAvgFuelConsumption();
+            }
+            if (!Objects.equals(realAvgFuelConsumption, refuelDto.getRealAvgFuelConsumption())) {
+                realAvgFuelConsumption = refuelDto.getRealAvgFuelConsumption();
+            }
+            try {
+                Date tempDate = (new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss").parse(refuelDto.getDate()));
+                if (date == null || date.equals(tempDate)) {
+                    date = tempDate;
+                }
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+            if (!Objects.equals(cost, refuelDto.getCost())) {
+                cost = refuelDto.getCost();
+            }
+            if (!Objects.equals(costPerLiter, refuelDto.getRealAvgFuelConsumption())) {
+                costPerLiter = refuelDto.getCostPerLiter();
             }
         }
     }
