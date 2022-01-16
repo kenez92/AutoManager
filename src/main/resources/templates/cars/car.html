@@ -154,18 +154,24 @@
         </thead>
         <tbody>
         <tr th:each="refuel: ${car.refuelDtoList}">
-            <td th:text="${refuel.date}"/>
-            <td th:text="${refuel.mileage}"/>
-            <td th:text="${refuel.kmTraveled}"/>
-            <td th:text="${refuel.liters}"/>
-            <td th:text="${refuel.computerAvgFuelConsumption}"/>
-            <td th:text="${refuel.realAvgFuelConsumption}"/>
-            <td th:text="${refuel.cost}"/>
-            <td th:text="${refuel.costPerLiter}"/>
+            <td th:name=${refuel.id} th:text="${refuel.date}"/>
+            <td th:name=${refuel.id} th:text="${refuel.mileage}"/>
+            <td th:name=${refuel.id} th:text="${refuel.kmTraveled}"/>
+            <td th:name=${refuel.id} th:text="${refuel.liters}"/>
+            <td th:name=${refuel.id} th:text="${refuel.computerAvgFuelConsumption}"/>
+            <td th:name=${refuel.id} th:text="${refuel.realAvgFuelConsumption}"/>
+            <td th:name=${refuel.id} th:text="${refuel.cost}"/>
+            <td th:name=${refuel.id} th:text="${refuel.costPerLiter}"/>
             <td>
                 <button class="button" style="width: auto; text-align: center"
                         th:onclick="deleteRefuel([[${car.id}]], [[${refuel.id}]])">
                     Usuń
+                </button>
+            </td>
+            <td>
+                <button class="button" style="width: auto; text-align: center"
+                        th:onclick="editRefuel([[${refuel.id}]])">
+                    Edytuj
                 </button>
             </td>
         </tr>
@@ -209,12 +215,69 @@
     }
 
     function deleteRefuel(carId, refuelId) {
-        console.log("id = " + refuelId)
         const form = document.createElement('form');
         form.method = 'post';
         form.action = "/refuel/" + carId + "/" + refuelId + "/";
         document.body.appendChild(form);
         form.submit();
+    }
+
+    function editRefuel(refuelId) {
+        const elements = document.getElementsByName(refuelId);
+        elements.length;
+        let id;
+        let type;
+        let name;
+        let step;
+        for (let i = 0; i < elements.length; i++) {
+            if (i === 0) {
+                id = "date";
+                type = "datetime-local";
+                name = "date";
+                step = "1";
+            } else if (i === 1) {
+                id = "mileage";
+                type = "number";
+                name = "mileage";
+            } else if (i === 2) {
+                id = "kmTraveled";
+                type = "number";
+                name = "kmTraveled";
+                step = "0.1";
+            } else if (i === 3) {
+                id = "liters";
+                type = "number";
+                name = "liters";
+                step = "0.1";
+            } else if (i === 4) {
+                id = "computerAvgFuelConsumption";
+                type = "number";
+                name = "computerAvgFuelConsumption";
+                step = "0.1";
+            } else if (i === 5) {
+                id = "realAvgFuelConsumption";
+                type = "number";
+                name = "realAvgFuelConsumption";
+                step = "0.1";
+            } else if (i === 6) {
+                id = "cost";
+                type = "number";
+                name = "cost";
+                step = "0.01";
+            } else if (i === 7) {
+                id = "costPerLiter";
+                type = "number";
+                name = "costPerLiter";
+                step = "0.01";
+            }
+            if (i === 0) {
+                const result = elements[i].textContent.substring(0, 10) + 'T' + elements[i].textContent.substring(11, elements[i].textContent.length);
+                console.log(result);
+                elements[i].innerHTML = ('<input type=' + type + ' + id=' + id + ' + name=' + name + ' + step=' + step + ' + value=' + result + '>');
+            } else {
+                elements[i].innerHTML = ('<input type=' + type + ' + id=' + id + ' + name=' + name + ' + step=' + step + ' + value=' + elements[i].textContent + '>');
+            }
+        }
     }
 
 
